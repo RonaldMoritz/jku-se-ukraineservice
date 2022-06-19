@@ -18,6 +18,7 @@ spring:
       open-in-view: false
       properties: 
          hibernate:
+            globally_quoted_identifiers: true
             hbm2ddl: 
                import_files: import-h2.sql
    application:

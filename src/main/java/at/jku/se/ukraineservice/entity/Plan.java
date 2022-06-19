@@ -2,18 +2,21 @@ package at.jku.se.ukraineservice.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "plan")
+@Table(name = "\"plan\"")
 public class Plan implements Serializable{
 
 	private static final long serialVersionUID = -5858543005086620548L;
 	
 	@Id
 	private Long id;
+
+	@Column(name = "\nplan\n")
 	private String plan;
 	
 	public Long getId() {
