@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{fragments :: header}"/>
+<body>
+	<div th:insert="~{fragments :: menu}"></div>
+	
+	     <div class="container-fluid">                
+	              <form class="form-inline my-6" id="searchRefugeeForm" th:action="@{/refugees}" method="get" style="float: left !important;" >
+      				<input name="keyword" th:value="${param.keyword}" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search first or last name">
+     				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">search</button>
+	              </form>    
+	              </p>
+	              <div class="m-6">
+	              </br>     
+	              </br> 
+		          <table class="table table-hover table-sm" style="margin-top:16px;">
+			        <thead>
+			        <tr>
+			            <th>id</th>
+			            <th>first name</th>
+			            <th>last name</th>
+			            <th>birth date</th>
+			            <th>gender</th>
+						<th>passport number</th>
+			            <th>home region</th>
+			            <th>arrival date</th>
+						<th>planned departure date</th>
+						<th>departure date</th>				
+			            <th>plan</th>
+			        </tr>
+				</thead>
+				<tbody>
+					<tr th:if="${refugees==null or refugees.empty}">
+						<td colspan="9"> No Refugees found</td>
+					</tr>
+					
+			        <tr th:each="refugee : ${refugees.content}">
+						<td><span th:text="${refugee.id}"> Id </span></td>
+						<td>
+							<div>
+								<a th:href="@{/refugee(refugeeId=${refugee.id})}" th:text="${refugee.firstName}" ></a>     
+							</div>
+						</td>
+						<td><span th:text="${refugee.lastName}"></span></td>
+						<td><span th:text="${refugee.birthDate}">birth date</span></td>
+						<td><span th:text="${refugee.gender}">gender</span></td>
+						<td><span th:text="${refugee.passportNo}">passport number</span></td>
+						<td><span th:text="${refugee.region.region}">home region</span></td>
+
+						<td><span th:text="${refugee.arrivalDate}">arrival date</span></td>
+						<td><span th:text="${refugee.plannedDepartureDate}">planned departure date</span></td>
+						<td><span th:text="${refugee.departureDate}">departure date</span></td>
+						<td><span th:text="${refugee.plan.plan}">plan</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			
+			  <p >
+					     <span th:if="${refugeedeleteSuccess!=null}" class="text-success">
+							<span class=" glyphicon glyphicon-ok "  ></span> <span th:text="${refugeedeleteSuccess}"></span></span>
+						</p>
+			
+	</div>
+</body>
+</html>

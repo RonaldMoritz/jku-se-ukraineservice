@@ -1,0 +1,33 @@
+spring:
+   h2:
+      console:
+        enabled: true  
+   datasource:
+      url: jdbc:sqlserver://ukraine-register-service.database.windows.net:1433;database=RefugeeDatabase;user=ServiceAdmin@ukraine-register-service;password={!Admin111};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      hikari:
+         connection-timeout: 20000
+         minimum-idle: 1
+         maximum-pool-size: 5
+         idle-timeout: 10000
+         max-lifetime: 30000
+         auto-commit: true
+   jpa:
+      hibernate:
+         ddl-auto: create
+      open-in-view: false
+      properties: 
+         hibernate:
+            hbm2ddl: 
+               import_files: import-h2.sql
+   application:
+      name: 'Ukraine Registration Service'
+   main:
+      banner-mode: off
+   thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      mode: HTML
+      encoding: UTF-8
+      content-type: text/html
+      cache: false
